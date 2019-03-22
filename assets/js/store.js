@@ -32,7 +32,7 @@ const form = (state = INIT_FORM, action) => {
       }
       return Object.assign({}, state, session);
     case 'CLEAR_TOKEN':
-      return empty_form;
+      return {email: "",pass: ""};
     default:
       return state;
   }
@@ -52,7 +52,7 @@ const token = (state = null, action) =>{
 const register = (state = {email: "",name: "",password: ""}, action) => {
   switch (action.type) {
     case 'INIT_FORM':
-      return empty_register;
+      return {email: "",name: "",password: ""};
     case 'UPDATE_FORM':
       return Object.assign({}, state, action.data);
     default:
@@ -63,7 +63,7 @@ const register = (state = {email: "",name: "",password: ""}, action) => {
 const login = (state = {email: "",pass: ""}, action) => {
   switch (action.type) {
     case 'CLEAR_TOKEN':
-      return empty_login;
+      return {email: "",pass: ""};
     case 'UPDATE_LOGIN_FORM':
       return Object.assign({}, state, action.data);
     default:
