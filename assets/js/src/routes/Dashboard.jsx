@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { deleteTask } from '../../api';
+import { Tooltip } from 'react-tippy';
 
 const mapStateToProps = ({tasks, token}) => ({
   tasks,
@@ -32,7 +33,7 @@ class Dashboard extends Component {
         <div className="task-list__info">
           <span className="task-list__title">{task.title}</span>
           <div className="task-list__up-right">
-            <span className="task-list__time">{task.time_spent}</span>
+            <span className="task-list__time">{task.time_spent}<sub>min</sub></span>
             <span className="task-list__status" data-complete="" >{task.completed ? "✔" : "✖"}</span>
           </div>
         </div>
@@ -86,7 +87,7 @@ class Dashboard extends Component {
   render() {
     return (
       <div className="task-list">
-        <p className="task-list__header">Tasks</p>
+        <p className="task-list__section-header">Dashboard</p>
         <Link className="task-list__add" to="/new-task">+</Link>
         {this.renderMyTasks()}
         {this.renderOtherTasks()}

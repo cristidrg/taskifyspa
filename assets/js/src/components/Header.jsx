@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom'
 
 const mapStateToProps = ({ token }) => ({
   name: token && token.user_name
@@ -17,12 +18,15 @@ const Header = ({name, onLogOut}) => (
   <header>
     <div className="app-header">
       <h1 className="app-header__title">Taskify</h1>
-      {name ? 
         <div className="app-header__links">
-          <p>Welcome: { name } | </p>
-          <a href="javascript:void(0)" onClick={onLogOut}>Log Out</a>
+          {name ? (
+            <Fragment>
+              <p>Welcome: { name } | </p>
+              <NavLink to="/" activeClassName="app-header--active">Dashboard</NavLink>
+              <a href="javascript:void(0)" onClick={onLogOut}>Log Out</a>
+            </Fragment>
+          ) : <p>Get organized without the effort</p>}
         </div>
-      : null}
     </div>
   </header>
 );
